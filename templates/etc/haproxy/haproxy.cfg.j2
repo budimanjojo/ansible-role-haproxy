@@ -1,0 +1,89 @@
+{{ ansible_managed | comment }}
+{% if haproxy_global_options is defined and haproxy_global_options | length > 0 %}
+
+global
+{% for key, value in haproxy_global_options.items() %}
+{% if value is boolean and value %}
+    {{ key }}
+{% elif value is string or value is number %}
+    {{ key }} {{ value }}
+{% elif value is sequence and value is not mapping and value is not string %}
+{% for i in value %}
+    {{ key }} {{ i }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if haproxy_defaults_options is defined and haproxy_defaults_options | length > 0 %}
+{% for option in haproxy_defaults_options %}
+{% if option.name != "" %}
+
+defaults {{ option.name }}
+{% else %}
+
+defaults
+{% endif %}
+{% for key, value in option.options.items() %}
+{% if value is boolean and value %}
+    {{ key }}
+{% elif value is string or value is number %}
+    {{ key }} {{ value }}
+{% elif value is sequence and value is not mapping and value is not string %}
+{% for i in value %}
+    {{ key }} {{ i }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+{% if haproxy_frontend_options is defined and haproxy_frontend_options | length > 0 %}
+{% for option in haproxy_frontend_options %}
+
+frontend {{ option.name }}
+{% for key, value in option.options.items() %}
+{% if value is boolean and value %}
+    {{ key }}
+{% elif value is string or value is number %}
+    {{ key }} {{ value }}
+{% elif value is sequence and value is not mapping and value is not string %}
+{% for i in value %}
+    {{ key }} {{ i }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+{% if haproxy_backend_options is defined and haproxy_backend_options | length > 0 %}
+{% for option in haproxy_backend_options %}
+
+backend {{ option.name }}
+{% for key, value in option.options.items() %}
+{% if value is boolean and value %}
+    {{ key }}
+{% elif value is string or value is number %}
+    {{ key }} {{ value }}
+{% elif value is sequence and value is not mapping and value is not string %}
+{% for i in value %}
+    {{ key }} {{ i }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+{% if haproxy_listen_options is defined and haproxy_listen_options | length > 0 %}
+{% for option in haproxy_listen_options %}
+
+listen {{ option.name }}
+{% for key, value in option.options.items() %}
+{% if value is boolean and value %}
+    {{ key }}
+{% elif value is string or value is number %}
+    {{ key }} {{ value }}
+{% elif value is sequence and value is not mapping and value is not string %}
+{% for i in value %}
+    {{ key }} {{ i }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endif %}

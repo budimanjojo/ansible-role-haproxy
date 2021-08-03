@@ -1,0 +1,35 @@
+---
+galaxy_info:
+  role_name: haproxy
+  author: Budiman JOJO
+  description: Role to install and configure HAProxy
+  issue_tracker_url: http://github.com/budimanjojo/ansible-role-haproxy/issues
+  license: license (MIT)
+  min_ansible_version: 2.1
+  platforms:
+  - name: Archlinux
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  - name: Fedora
+    versions:
+    - all
+
+  galaxy_tags:
+  - system
+  - packaging
+  - linux
+  - server
+  - development
+  - proxy
+  - haproxy
+  - loadbalancer
+  - security
+  - web
+
+dependencies: []

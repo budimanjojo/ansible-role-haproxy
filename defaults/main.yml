@@ -1,0 +1,8 @@
+---
+haproxy_package_name: haproxy
+haproxy_service_name: haproxy
+haproxy_global_options: {}
+haproxy_defaults_options: []
+haproxy_frontend_options: []
+haproxy_backend_options: []
+haproxy_listen_options: []
