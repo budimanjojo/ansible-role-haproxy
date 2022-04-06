@@ -1,11 +1,11 @@
 ---
 - name: Ensure haproxy is installed
-  package:
+  ansible.builtin.package:
     name: "{{ haproxy_package_name }}"
     state: present
 
 - name: Create haproxy config file
-  template:
+  ansible.builtin.template:
     src: "etc/haproxy/haproxy.cfg.j2"
     dest: "/etc/haproxy/haproxy.cfg"
     validate: haproxy -f %s -c -q
@@ -15,7 +15,7 @@
   notify: Restart haproxy
 
 - name: Ensure haproxy is enabled and started
-  service:
+  ansible.builtin.service:
     name: "{{ haproxy_service_name }}"
     state: started
     enabled: yes
